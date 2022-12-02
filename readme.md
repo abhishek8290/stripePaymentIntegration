@@ -1,0 +1,1 @@
+Request -> middleWare->  Routes -> Body Validation ( joi )-> services ( whole Logic ) + clients -> return 

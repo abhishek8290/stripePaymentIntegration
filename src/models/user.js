@@ -1,5 +1,7 @@
 const mongo = require('mongoose');
 const bcrypt = require('bcryptjs');
+const { toJSON } = require('./plugins');
+
 
 
 const userSchema = new mongo.Schema({
@@ -13,6 +15,12 @@ const userSchema = new mongo.Schema({
         required: true,
     },
     lastName: String,
+    password : {
+        type: String,
+        trim: true,
+        minlength: 8,
+        private: true,
+    },
     phoneNumber: {
         type: String,
         required: true,
@@ -42,7 +50,7 @@ const userSchema = new mongo.Schema({
 }, {
     timestamps: true,
 });
-
+userSchema.plugin(toJSON);
 
 userSchema.statics.isEmailTaken = async function (email) {
     return !!(await this.findOne({ email}));

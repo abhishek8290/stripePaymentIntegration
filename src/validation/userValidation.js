@@ -1,12 +1,12 @@
 const Joi = require('joi');
 
 const password = (value, helpers) => {
-    if (value.length < 8) {
+    if (value.length < 8) 
       return helpers.message('password must be at least 8 characters');
-    }
-    if (!value.match(/\d/) || !value.match(/[a-zA-Z]/)) {
+    
+    if (!value.match(/\d/) || !value.match(/[a-zA-Z]/)) 
       return helpers.message('password must contain at least 1 letter and 1 number');
-    }
+    
     return value;
   };
 
@@ -17,7 +17,7 @@ const objectId = (value, helpers) => {
     return value;
 };
   
-
+// Done 
 const createUser = {
   body: Joi.object().keys({
     email: Joi.string().required().email(),
@@ -28,20 +28,12 @@ const createUser = {
     userName :Joi.string(),
   }),
 };
-
+// Done 
 const getUsers = {
   query: Joi.object().keys({
-    name: Joi.string(),
-    role: Joi.string(),
-    sortBy: Joi.string(),
-    limit: Joi.number().integer(),
-    page: Joi.number().integer(),
-  }),
-};
-
-const getUser = {
-  params: Joi.object().keys({
-    userId: Joi.string().custom(objectId),
+    email: Joi.string(),
+    phonenumber: Joi.string(),
+    userName : Joi.string(),
   }),
 };
 
@@ -67,7 +59,6 @@ const deleteUser = {
 module.exports = {
   createUser,
   getUsers,
-  getUser,
   updateUser,
   deleteUser,
   password
